@@ -1,7 +1,8 @@
 
 let numOfStudent = +prompt("Сколько студентов учиться у Вас в группе?");
 
-console.log(doListOfStudent(numOfStudent));
+let students = doListOfStudent(numOfStudent);
+console.log(students);
 
 // const question = prompt(`Выберите операцию: 
 //     1.получить самого преуспевающего студента
@@ -51,26 +52,29 @@ function doListOfStudent(numofstudent) {
     const student = [];
 
     for (let i = 0; i < numofstudent; i++) {
+        let arrMark = getRandomIntInclusive(1, 12);
         student[i] = {
             name: prompt(`Enter ${i} student name`),
-            marks: getRandomIntInclusive(1, 12),
-            avgMark: averageMark(student.marks)
+            marks: arrMark,
+            avgMark: averageMark(arrMark)
         }
     }
+
 
 
     return student;
 
 }
 
-function averageMark(marks) {
-    let sumMarks;
 
-    for (let i = 0; i < marks.length; i++) {
-        sumMarks += marks[i];
+function averageMark(arrMark) {
+    let sumMarks = 0;
+
+    for (let i = 0; i < arrMark.length - 1; i++) {
+        sumMarks += arrMark[i];
     }
 
-    let average = sumMarks / marks.length;
+    let average = sumMarks / arrMark.length;
 
     return Math.floor(average);
 }
@@ -96,19 +100,30 @@ function getRandomIntInclusive(min, max) {
 
 
 
-//     function getBestStudent(student) {  //[{name: `fdsef`, marks: [10,12,6,7,8,3,9], avgMark: 8,7}, ...]
-//         let bestStudent = student[0];
-
-//         for (let i = 0; i < student.length; i++) {
-//             if (bestStudent.avgMark < student[i].avgMark) {
-//                 bestStudent = student[i];
-//             }
-//             return bestStudent;
-//         }
-//     }
-// console.log(getBestStudent());
+function getBestStudent(students) { // [{ name: 'John Doe', marks: [10, 12, 5, 7, 8, 10], avgMark: 8.7  }, ...]
+    let bestStudent = students[0];
+    for (let i = 1; i < students.length; i++) {
+        if (bestStudent.avgMark < students[i].avgMark)
+            bestStudent = students[i];
+    }
+    return bestStudent;
+}
+// console.log(getBestStudent(students));
 
 
+const bubbleSort = arr => {
+    for (let i = 0, endI = arr.length - 1; i < endI; i++) {
+        let wasSwap = false;
+        for (let j = 0, endJ = endI - i; j < endJ; j++) {
+            if (arr[j].avgMark > arr[j + 1].avgMark) {
+                [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+                wasSwap = true;
+            }
+        }
+        if (!wasSwap) break;
+    }
+    let revArr = arr.reverse()
+    return revArr;
+};
 
-
-
+console.log(bubbleSort(students));
