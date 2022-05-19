@@ -1,7 +1,6 @@
 let question = +prompt("Сколько студентов учиться у Вас в группе?");
 let students = doListOfStudent(question);
 console.log(students);
-var arrMark;
 
 function main() {
     do {
@@ -44,7 +43,7 @@ function doListOfStudent(numofstudent) {
     const student = [];
 
     for (let i = 0; i < numofstudent; i++) {
-        arrMark = getRandomIntInclusive(1, 12);
+        let arrMark = getRandomIntInclusive(1, 12);
         student[i] = {
             name: prompt(`Enter ${i + 1} student name`),
             marks: arrMark
@@ -80,8 +79,6 @@ function addAvgMark(student) {
     }
     return student;
 }
-// console.log(addAvgMark(students));
-console.log(students[0].marks);
 
 
 
@@ -101,7 +98,7 @@ function getRandomIntInclusive(min, max) {
 
 
 
-function getBestStudent(students) { // [{ name: 'John Doe', marks: [10, 12, 5, 7, 8, 10], avgMark: 8.7  }, ...]
+function getBestStudent(students) { 
     let bestStudent = students[0];
     for (let i = 1; i < students.length; i++) {
         if (bestStudent.avgMark < students[i].avgMark)
@@ -109,7 +106,6 @@ function getBestStudent(students) { // [{ name: 'John Doe', marks: [10, 12, 5, 7
     }
     return bestStudent;
 }
-// console.log(getBestStudent(students));
 
 
 
@@ -128,7 +124,6 @@ function bubbleSort(arr) {
     return revArr;
 };
 
-// console.log(bubbleSort(students));
 
 
 function listOfDeb(students) {
@@ -143,7 +138,6 @@ function listOfDeb(students) {
 }
 
 
-// console.log(listOfDeb(students));
 
 
 function newStudent(students) {
@@ -159,5 +153,3 @@ function newStudent(students) {
 
     return students
 }
-
-// console.log(newStudent(students));
