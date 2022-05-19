@@ -1,49 +1,41 @@
-
-let numOfStudent = +prompt("Сколько студентов учиться у Вас в группе?");
-
-let students = doListOfStudent(numOfStudent);
+let question = +prompt("Сколько студентов учиться у Вас в группе?");
+let students = doListOfStudent(question);
 console.log(students);
+var arrMark;
 
-// const question = prompt(`Выберите операцию: 
-//     1.получить самого преуспевающего студента
-//     2.отсортировать студентов по успеваемости
-//     3.посчитать среднюю оценку для каждого студента
-//     4.получить студентов на отчисление
-//     5.добавить новенького в группу
-//     6.повтор операции`);
+function main() {
+    do {
+        let question = +prompt(`Выберите операцию: 
+        1.получить самого преуспевающего студента
+        2.отсортировать студентов по успеваемости
+        3.посчитать среднюю оценку для каждого студента
+        4.получить студентов на отчисление
+        5.добавить новенького в группу`);
+        switch (question) {
+            case 1:
+                console.log(getBestStudent(students));
+                break;
+            case 2:
+                console.log(bubbleSort(students));
+                break;
+            case 3:
+                console.log(addAvgMark(students));
+                break;
+            case 4:
+                console.log(listOfDeb(students));
+                break;
+            case 5:
+                console.log(newStudent(students));
+                break;
+        
+            default:
+                break;
+        }
+        
+    } while (confirm('Do you want to continue?'));
+}
 
-// Основная функция
-// function AskAQuestion() {
-//     console.log(doListOfStudent());
-//     const question = prompt(`Выберите операцию: 
-//     1.получить самого преуспевающего студента
-//     2.отсортировать студентов по успеваемости
-//     3.посчитать среднюю оценку для каждого студента
-//     4.получить студентов на отчисление
-//     5.добавить новенького в группу
-//     6.повтор операции`);
-//     switch (question) {
-//         case 1:
-//             console.log(bestStudent());
-//             break;
-
-//         default:
-//             break;
-//     }
-// };
-
-
-
-// function main() {
-//     let students = generateStudents(+prompt('How many students in you group?'))
-//     do {
-
-
-//         //code
-//     } while (confirm('Do you want to continue?'));
-// }
-
-// main();
+main();
 
 
 
@@ -52,11 +44,10 @@ function doListOfStudent(numofstudent) {
     const student = [];
 
     for (let i = 0; i < numofstudent; i++) {
-        let arrMark = getRandomIntInclusive(1, 12);
+        arrMark = getRandomIntInclusive(1, 12);
         student[i] = {
-            name: prompt(`Enter ${i} student name`),
-            marks: arrMark,
-            avgMark: averageMark(arrMark)
+            name: prompt(`Enter ${i + 1} student name`),
+            marks: arrMark
         }
     }
 
@@ -67,6 +58,8 @@ function doListOfStudent(numofstudent) {
 }
 
 
+
+
 function averageMark(arrMark) {
     let sumMarks = 0;
 
@@ -75,12 +68,20 @@ function averageMark(arrMark) {
     }
 
     let average = sumMarks / arrMark.length;
+    
 
     return Math.floor(average);
 }
 
-
-
+function addAvgMark(student) {
+    for (let i = 0; i < question; i++) {
+        let avgArrMark = student[i].marks
+        student[i].avgMark = averageMark(avgArrMark);
+    }
+    return student;
+}
+// console.log(addAvgMark(students));
+console.log(students[0].marks);
 
 
 
@@ -111,7 +112,8 @@ function getBestStudent(students) { // [{ name: 'John Doe', marks: [10, 12, 5, 7
 // console.log(getBestStudent(students));
 
 
-const bubbleSort = arr => {
+
+function bubbleSort(arr) {
     for (let i = 0, endI = arr.length - 1; i < endI; i++) {
         let wasSwap = false;
         for (let j = 0, endJ = endI - i; j < endJ; j++) {
@@ -126,4 +128,36 @@ const bubbleSort = arr => {
     return revArr;
 };
 
-console.log(bubbleSort(students));
+// console.log(bubbleSort(students));
+
+
+function listOfDeb(students) {
+    let listOfDeb = [];
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].avgMark <= 5) {
+            listOfDeb[listOfDeb.length] = students[i]
+        }
+        
+    }
+    return listOfDeb;
+}
+
+
+// console.log(listOfDeb(students));
+
+
+function newStudent(students) {
+    let oldListOfStudent = {};
+    if (question = 5) {
+            arrMark = getRandomIntInclusive(1, 12);
+            oldListOfStudent = {
+                name: prompt(`Enter new student name`),
+                marks: arrMark
+        }
+    }
+    students[students.length] = oldListOfStudent;
+
+    return students
+}
+
+// console.log(newStudent(students));
