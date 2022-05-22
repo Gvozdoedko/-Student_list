@@ -1,6 +1,7 @@
 let question = +prompt("Сколько студентов учиться у Вас в группе?");
 let students = doListOfStudent(question);
 let questionMark;
+console.log(students);
 
 function main() {
     do {
@@ -35,11 +36,11 @@ function main() {
             case 7:
                 console.log(addRandomStudent(students));
                 break;
-        
+
             default:
                 break;
         }
-        
+
     } while (confirm('Do you want to continue?'));
 }
 
@@ -73,7 +74,7 @@ function averageMark(arrMark) {
     }
 
     let average = sumMarks / arrMark.length;
-    
+
 
     return Math.floor(average);
 }
@@ -104,7 +105,7 @@ function getRandomIntInclusive(min, max) {
 
 
 
-function getBestStudent(students) { 
+function getBestStudent(students) {
     let bestStudent = students[0];
     for (let i = 1; i < students.length; i++) {
         if (bestStudent.avgMark < students[i].avgMark)
@@ -138,7 +139,7 @@ function listOfDeb(students) {
         if (students[i].avgMark <= 5) {
             listOfDeb[listOfDeb.length] = students[i]
         }
-        
+
     }
     return listOfDeb;
 }
@@ -149,10 +150,10 @@ function listOfDeb(students) {
 function newStudent(students) {
     let oldListOfStudent = {};
     if (question = 5) {
-            arrMark = getRandomIntInclusive(1, 12);
-            oldListOfStudent = {
-                name: prompt(`Enter new student name`),
-                marks: arrMark
+        arrMark = getRandomIntInclusive(1, 12);
+        oldListOfStudent = {
+            name: prompt(`Enter new student name`),
+            marks: arrMark
         }
     }
     students[students.length] = oldListOfStudent;
@@ -167,7 +168,7 @@ function urMark(students) {
         urArrMark[i] = +prompt(`Введите оценку студента`);
     }
     students[questionMark].marks = urArrMark;
-    
+
     return students;
 }
 
@@ -177,6 +178,9 @@ function addRandomStudent(students) {
         name: studentsMock.getStudent()
     }
     return students
-    
+
 }
+
+
+
 

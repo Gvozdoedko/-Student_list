@@ -1,4 +1,3 @@
-console.log(students);
 main();
 
 
